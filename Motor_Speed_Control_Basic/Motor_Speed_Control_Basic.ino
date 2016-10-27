@@ -1,5 +1,5 @@
 /* This alternates the speed on a DC motor */
-
+//adding comment to teach joe
 int base = 3;
 
 // the setup function runs once when you press reset or power the board
