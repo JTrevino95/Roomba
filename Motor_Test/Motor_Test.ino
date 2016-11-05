@@ -17,9 +17,9 @@ void loop() {
   
 motorLeft.run(FORWARD);
 motorRight.run(FORWARD);
-delay(2000);
+/*delay(2000);
 motorLeft.run(FORWARD);
 motorRight.run(BACKWARD);
-delay(1000);
+delay(1000);*/
 
 }

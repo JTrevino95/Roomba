@@ -24,6 +24,7 @@ pinMode(encoderRight,INPUT);
 void loop() 
 { 
 runForward(12,"left");
+runForward(12,"right");
 delay(3000);
 }
 
@@ -36,29 +37,29 @@ void runForward(float distance, char whichMotor)
   //this if statement will decide which motor to turn on
   if (whichMotor == "left" or whichMotor == "Left")
     {
-      while (count != (ticks + 1))// run the loop until the rotation is complete
+      while (count <= ticks )// run the loop until the rotation is complete
       {
        motorLeft.run(FORWARD);
-          if (count == ticks)
+          if (count >= ticks)
            {
             motorLeft.run(RELEASE);
            count == 0; //to ensure the count gets reset when the motor is done running
            }
            else 
-          count++;
+          count = count + 1; // count++ wasnt working on the first attempt, did this to be safe
       }  
   if (whichMotor == "right" or whichMotor == "Right")
       {
         while (count != (ticks + 1))// run the loop until the rotation is complete
           {
           motorRight.run(FORWARD);
-            if (count == ticks)
+            if (count >= ticks)
              {
             motorRight.run(RELEASE);
              count == 0; //to ensure the count gets reset when the motor is done running
             }
              else 
-            count++;
+            count = count + 1; // count++ wasnt working on the first attempt, did this to be safe
           }
       }
 
