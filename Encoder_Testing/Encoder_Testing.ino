@@ -4,7 +4,8 @@ to measure the 'ticks' per revolution */
 
 int encoderLeft = 2; // left encoder is on anaog pin A0, which will function as a digital pin
 int encoderRight = 3; // right encoder is on analog pin A1, which will function as a digital pin
-int count = 0; // start the count at 0
+int count_left = 0; // start the count at 0
+int count_right = 0;
 int encoderLeftLast = 0;
 int encoderRightLast = 0;
 void setup() 
@@ -13,7 +14,8 @@ void setup()
 pinMode(encoderLeft,INPUT);
 pinMode(encoderRight,INPUT);
 Serial.begin(9600);
-attachInterrupt(digitalPinToInterrupt(encoderLeft),counter,RISING); // count the amount of ticks in one revolution
+attachInterrupt(digitalPinToInterrupt(encoderLeft),counter_left,RISING); // count the amount of ticks in one revolution
+attachInterrupt(digitalPinToInterrupt(encoderRight),counter_right,RISING); //buzz
 }
 
 void loop() 
@@ -31,10 +33,19 @@ void loop()
 }
 
 //increments a counter
-void counter()
+void counter_left()
 {
-  count = count + 1;
-  Serial.println(count);
+  count_left = count_left + 1;
+  Serial.print("Left: ");
+  Serial.println(count_left);
+  
+}
+
+void counter_right()
+{
+  count_right = count_right + 1;
+  Serial.print("Right: ");
+  Serial.println(count_right);
 }
 
 
@@ -42,4 +53,4 @@ void counter()
 //revolutions = (distance)/(circumfrence)
 // #ticks = (ticks/revolution) * (#revolutions)
 // wheel diameter is 2.3 - 2.5 inches
-// circumfrence is roughly (2.4)pi = 7.536 inches
+// circumference is roughly (2.4)pi = 7.536 inches

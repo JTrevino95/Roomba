@@ -1,6 +1,6 @@
 #include <AFMotor.h>
-AF_DCMotor motorLeft(3, MOTOR12_64KHZ);
-AF_DCMotor motorRight(4, MOTOR12_64KHZ);
+AF_DCMotor motorLeft(6, MOTOR12_64KHZ);
+AF_DCMotor motorRight(9, MOTOR12_64KHZ);
 
 void setup() {
   // put your setup code here, to run once:
