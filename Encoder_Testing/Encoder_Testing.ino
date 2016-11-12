@@ -43,15 +43,15 @@ void loop()
 void counter_right()
 {
   count_right = count_right + 1;
-  //Serial.print("Right: ");
-  //Serial.println(count_right);
+  //Serial.print("Right: "); legacy, makes the interrupt not work as intended because of time to execute
+  //Serial.println(count_right); ''   ''
 }
 
 //increments a counter
 void counter_left()
 {
   count_left = count_left + 1;
-  //Serial.print("Left: ");
+  //Serial.print("Left: "); same as counter_right reasons
   //Serial.println(count_left);
   
 }
