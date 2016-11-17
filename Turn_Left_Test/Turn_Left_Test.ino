@@ -1,4 +1,3 @@
-
 int encoderLeft = 2; // encoder for left motor
 int motorLeftFWD = 12; //if 1 and REV = 0 then go forward
 int motorLeftREV = 11; //if 1 and FWD = 0 then go reverse
@@ -20,40 +19,56 @@ void setup()
   pinMode(motorLeftSpeed,OUTPUT);
   Serial.begin(9600);
   attachInterrupt(digitalPinToInterrupt(encoderLeft),counter_left,RISING); //count the amount of ticks in one revolution on Left motor 
- // attachInterrupt(digitalPinToInterrupt(encoderRight),counter_right,RISING); //count the amount of ticks in one revolution on Right motor
+  attachInterrupt(digitalPinToInterrupt(encoderRight),counter_right,RISING); //count the amount of ticks in one revolution on Right motor
  }
 
 void loop() {
   
  //Serial.println(count_left); // print the amount of ticks
 
-  
-
-    if ((count_left/3600)%(2) == 0)
-    {
+      // go forward 2 feet
+      while(count_left <= 2400)
+      {
+    
         //go forward
         analogWrite(motorLeftSpeed,255);// set speed
         digitalWrite(motorLeftFWD,HIGH);
         digitalWrite(motorLeftREV, LOW);
+
         
        //go forward
         analogWrite(motorRightSpeed,255);// set speed
         digitalWrite(motorRightFWD,HIGH);
         digitalWrite(motorRightREV, LOW);
-     
-    } 
-    else
-    {
-      digitalWrite(motorLeftFWD,LOW);
-      digitalWrite(motorLeftREV,HIGH);
 
-      digitalWrite(motorRightFWD,LOW);
-      digitalWrite(motorRightREV,HIGH);
-    }
- 
+      }
+
+     //turn 90 degrees
+    if (count_left >= 2400)
+    {
+      if (count_right <= 2400 + 1100)//insert turn distance here
+      {
+        digitalWrite(motorLeftFWD,LOW);
+        digitalWrite(motorLeftREV,LOW);
+  
+        digitalWrite(motorRightFWD,HIGH);
+        digitalWrite(motorRightREV,LOW);
+      }
+    
+       else //stop
+      {
+          digitalWrite(motorLeftFWD,LOW);
+          digitalWrite(motorLeftREV,LOW);
+    
+          digitalWrite(motorRightFWD,LOW);
+          digitalWrite(motorRightREV,LOW);
+          count_left = 0; //reset
+          count_right = 0; //reset
+      }
   //delay(2000);
 
   
+    }
 }
 
 void counter_left()

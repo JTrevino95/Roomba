@@ -6,8 +6,6 @@ int encoderLeft = 2; // left encoder is on anaog pin A0, which will function as 
 int encoderRight = 3; // right encoder is on analog pin A1, which will function as a digital pin
 volatile unsigned int count_left = 0; // start the count at 0
 volatile unsigned int count_right = 0;
-int encoderLeftLast = 0;
-int encoderRightLast = 0;
 void setup() 
 {
 // put your setup code here, to run once:
